@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int mostWordsFound(vector<string>& sentences) {
+        
+        int n = sentences.size();
+        int final_ans = -1;
+        vector<int> ans;
+        for(int i=0; i<n; i++) {
+            
+            int wordcount = 0;
+            string s = sentences[i];
+            int s_size = s.size();
+            
+            for(int j=0; j<s_size; j++) {
+                if(s[j] == ' ') {
+                    //int wordcount = 0;
+                    wordcount++;
+                    ans.push_back(wordcount);
+                }
+            }
+            final_ans = max(final_ans, wordcount);
+        }
+        return final_ans + 1;
+    }
+};
