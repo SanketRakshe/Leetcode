@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int alternateDigitSum(int n) {
+        vector<int> temp;
+
+        while(n > 0) {
+            temp.push_back(n%10);
+            n = n / 10;
+        }
+
+        reverse(temp.begin(), temp.end());
+
+        int ans = 0;
+        bool plus = true;
+        for(int i = 0; i < temp.size(); i++) {
+            if(plus) {
+                ans += temp[i];
+                plus = false;
+            }
+            else {
+                ans -= temp[i];
+                plus = true;
+            }
+        }
+        return ans;
+    }
+};
