@@ -1,0 +1,77 @@
+class Solution {
+public:
+
+    int FirstOccurence(vector<int>& nums, int target) {
+        int start = 0;
+        int end = nums.size() - 1;
+        int res = -1;
+
+        while(start <= end) {
+            int mid = start + (end - start) / 2;
+
+            if(target == nums[mid]) {
+                res = mid;
+                end = mid - 1;
+            }
+            else if(target < nums[mid]) {
+                end = mid - 1;
+            }
+            else {
+                start = start + 1;
+            }
+        }
+        return res;
+    }
+
+    int Last_Occurence(vector<int>& nums, int target) {
+        int start = 0; 
+        int end = nums.size() - 1;
+        int res = -1;
+
+        while(start <= end) {
+            
+            int mid = start + (end - start) / 2;
+
+            if(target == nums[mid]) {
+                res = mid;
+                start = mid + 1;
+            }
+            else if(target < nums[mid]) {
+                end = mid - 1;
+            }
+            else {
+                start = mid + 1;
+            }
+        } 
+        return res;
+    }
+
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        /*sort(nums.begin(), nums.end());
+        vector<int> ans;
+        for(int i = 0; i < nums.size(); i++) {
+            if(target == nums[i]) {
+                ans.push_back(i);
+            }
+        }
+        return ans;*/
+
+        //Using Binary Search
+
+        vector<int> answer;
+        sort(nums.begin(), nums.end());
+
+        int first_occ = FirstOccurence(nums, target);
+        int last_occ = Last_Occurence(nums, target);
+
+        if(first_occ != -1 && last_occ != -1) {
+
+            for(int i = first_occ; i <= last_occ; i++) {
+                answer.push_back(i);
+            }
+        }
+        return answer;
+    }
+
+};
+
