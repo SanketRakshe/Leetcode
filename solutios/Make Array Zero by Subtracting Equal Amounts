@@ -1,0 +1,10 @@
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        vector<int> V(101);
+        int ans = 0;
+        for(int i = 0; i < nums.size(); i++) V[nums[i]] = 1;
+        for(int j = 1; j <= 100; j++) ans = ans + V[j];
+        return ans;
+    }
+};
