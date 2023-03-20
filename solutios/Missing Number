@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> Dummy(n+1, 0);
+        int ans = 0;
+        for(int i = 0; i < n; i++) {
+            Dummy[nums[i]]++;
+        }
+        for(int i = 0; i < Dummy.size(); i++) {
+            if(Dummy[i] == 0) {
+                ans = i;
+            }
+        }
+        return ans;
+    }
+};
