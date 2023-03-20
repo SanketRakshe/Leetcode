@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int climbStairs(int n) {
+        /*//Base Case
+        if(n < 0) return 0;
+        if(n==0 || n==1) return 1;
+
+        //Recursive Relation
+        return climbStairs(n-1) + climbStairs(n-2);*/
+
+        if(n <= 2) return n;
+        int First = 1 , Second = 2, ans = 0;
+        for(int i = 3; i <= n; i++) {
+            ans = First + Second;
+            First = Second;
+            Second = ans;
+        }
+        return ans;
+    }
+};
