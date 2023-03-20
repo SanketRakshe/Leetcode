@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> addToArrayForm(vector<int>& num, int k) {
+        vector<int> gg;
+        while(k) {
+            gg.push_back(k%10);
+            k/=10;
+        }
+        reverse(gg.begin() ,gg.end());
+        int len1 = num.size()-1;
+        int len2 = gg.size()-1;
+        int sum = 0, carry = 0;
+        vector<int> ans;
+        while(len1>=0 || len2>=0 || carry) {
+            
+            if(len1 >= 0) {sum+= num[len1]; len1--;}
+            if(len2 >= 0) {sum+= gg[len2]; len2--;}
+
+            sum+= carry;
+            carry = sum / 10;
+            ans.push_back(sum%10);
+            sum = 0;
+        }
+        if(carry) ans.push_back(carry);
+            
+        reverse(ans.begin(), ans.end());
+
+        return ans;
+    }
+};
